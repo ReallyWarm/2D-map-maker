@@ -1,9 +1,11 @@
+display: [1280, 960]
 color:
   black: [0,0,0]
   white: [255,255,255]
 canva:
   background: [80,80,80]
   grid: [255,255,255]
+  preview: [255,100,100]
 tile:
   size: [32,32]
   colorkey: [0,0,255]

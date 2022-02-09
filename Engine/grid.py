@@ -2,21 +2,24 @@ import pygame
 from .debug import debug
 
 class Grid:
-    def __init__(self, width, height, row, col, canva_pos):
-        self.screen = pygame.display.get_surface()
+    def __init__(self, screen, width, height, row, col, canva_pos):
+        self.screen = screen
         self.width = width
         self.height = height
         self.row = row
         self.col = col
         self.start = canva_pos
 
+        # Offsets
+        offset = screen.get_offset()
+        self.snap_start = [offset[0] + canva_pos[0], offset[1] + canva_pos[1]]
+
 
     def snap(self, mouse, scroll):
-        snap_col = int((mouse[0] - self.start[0]) / self.width)
-        snap_row = int((mouse[1] - self.start[1]) / self.height)
+        snap_col = int((mouse[0] - self.snap_start[0]) / self.width)
+        snap_row = int((mouse[1] - self.snap_start[1]) / self.height)
         snap_colrow = [snap_col, snap_row]
 
-        # debug(snap_colrow)
         return snap_colrow
 
     def display(self, scroll, color):
